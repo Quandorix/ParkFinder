@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wetterpark Platzfinder</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">ParkFinder</h1>
+    
+    <div class="grid">
+      <div class="sidebar">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Parkplatz suchen</h2>
+          </div>
+          <div class="card-content">
+            <form id="parkingForm" class="space-y">
+              <div class="form-group">
+                <label for="address">Adresse oder Stadt eingeben *</label>
+                <div class="input-group">
+                  <input type="text" id="address" placeholder="z.B. Wien, Stephansplatz" required>
+                  <button type="submit" id="searchBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="parking-type">Nur kostenlose Parkplätze</label>
+                <label class="switch">
+                  <input type="checkbox" id="onlyFreeParking" checked>
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              
+              <div class="form-group">
+                <label for="suggestion-mode">Vorschlagsmodus</label>
+                <select id="suggestionMode" class="select">
+                  <option value="weather">Wetterabhängig</option>
+                  <option value="open">Nur Freiflächen</option>
+                  <option value="covered">Nur überdacht</option>
+                  <option value="both">Beides (unabhängig vom Wetter)</option>
+                </select>
+              </div>
+            </form>
+            
+            <div id="weatherDisplay" class="weather-display hidden">
+              <h3>Aktuelle Wetterlage</h3>
+              <div class="weather-card">
+                <div class="weather-location">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                  <p id="displayLocation">Standort wird geladen...</p>
+                </div>
+                
+                <div class="weather-details">
+                  <div class="weather-main">
+                    <span id="weatherIcon" class="weather-icon">🌡️</span>
+                    <div>
+                      <p id="temperature" class="temperature">--°C</p>
+                      <p id="weatherDescription" class="description">Laden...</p>
+                    </div>
+                  </div>
+                  <div class="weather-humidity">
+                    <p>Luftfeuchtigkeit: <span id="humidity">--%</span></p>
+                  </div>
+                </div>
+                
+                <div id="weatherWarning" class="weather-warning hidden">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+                  <p>Bei diesem Wetter empfehlen wir überdachte Parkplätze.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="parkingListCard" class="card mt hidden">
+          <div class="card-header">
+            <h2 class="card-title">Empfohlene Parkplätze</h2>
+          </div>
+          <div class="card-content">
+            <div id="parkingList" class="parking-list"></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="map-container">
+        <div class="card">
+          <div class="card-content no-padding">
+            <div id="map" class="map"></div>
+            <div id="loader" class="loader hidden"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+  <script src="script.js"></script>
+</body>
+</html>
