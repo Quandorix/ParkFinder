@@ -76,7 +76,7 @@ body {
 
 .card-content {
   padding: 1rem;
-  padding-top: 0;
+  padding-top: 10px;
 }
 
 .no-padding {
@@ -571,7 +571,7 @@ input:checked + .slider:before {
 
   .card-content {
     padding: 1.5rem;
-    padding-top: 0;
+    padding-top: 10;
   }
 
   .card-title {
