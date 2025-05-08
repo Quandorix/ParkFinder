@@ -528,7 +528,7 @@ function createPopupContent(spot) {
       <p>${spot.covered ? 'Überdacht' : 'Freifläche'} | ${spot.isFree ? 'Kostenlos' : 'Kostenpflichtig'}</p>
       <p>${spot.address}</p>
       <p>${spot.distance} km entfernt</p>
-      <button class="route-button" onclick="selectSpotById('${spot.id}')">
+      <button class="route-button btn btn-primary" onclick="selectSpotById('${spot.id}')">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polygon points="3 11 22 2 13 21 11 13 3 11"/>
         </svg>
@@ -581,7 +581,7 @@ function updateParkingList() {
         </p>
       </div>
       
-      <button class="route-button ${selectedSpot && selectedSpot.id === spot.id ? 'selected' : ''}">
+      <button class="btn btn-primary route-button ${selectedSpot && selectedSpot.id === spot.id ? 'selected' : ''}">
         ${selectedSpot && selectedSpot.id === spot.id ? 
           `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg> Ausgewählt` : 
           `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> Route anzeigen`
